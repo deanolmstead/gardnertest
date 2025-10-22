@@ -60,13 +60,13 @@
   --space-4: clamp(1.6rem, 3.2vw, 2.4rem);
   --space-5: clamp(2rem, 4vw, 3rem);
 
-  /* Light mode tokens */
-  --bg:       color-mix(in oklch, var(--near-black) 6%,  white 94%);
-  --surface:  color-mix(in oklch, var(--near-black) 12%, white 88%);
-  --surface-2:color-mix(in oklch, var(--near-black) 20%, white 80%);
-  --ink:      color-mix(in oklch, var(--near-black) 85%, white 15%);
-  --ink-soft: color-mix(in oklch, var(--near-black) 55%, white 45%);
-  --border:   color-mix(in oklch, var(--near-black) 15%, white 85%);
+  /* Light mode tokens - subtle colors */
+  --bg:       color-mix(in oklch, var(--near-black) 2%,  white 98%);
+  --surface:  color-mix(in oklch, var(--near-black) 5%, white 95%);
+  --surface-2:color-mix(in oklch, var(--near-black) 10%, white 90%);
+  --ink:      color-mix(in oklch, var(--near-black) 75%, white 25%);
+  --ink-soft: color-mix(in oklch, var(--near-black) 45%, white 55%);
+  --border:   color-mix(in oklch, var(--near-black) 8%, white 92%);
   --accent:   var(--primary);
   --accent-ink: color-mix(in oklch, black 85%, white 15%);
 
@@ -82,34 +82,7 @@
   /* Hint UA to theme form controls/scrollbars */
   color-scheme: light dark;
 }
-:root[data-theme="light"]{ color-scheme: light; }
-:root[data-theme="dark"] { color-scheme: dark;  }
-
-/* Auto dark mode (no JS required when theme=auto) */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:       color-mix(in oklch, var(--near-black) var(--bg-dark-mix),      white calc(100% - var(--bg-dark-mix)));
-    --surface:  color-mix(in oklch, var(--near-black) var(--surface-dark-mix), white calc(100% - var(--surface-dark-mix)));
-    --surface-2:color-mix(in oklch, var(--near-black) var(--surface2-dark-mix),white calc(100% - var(--surface2-dark-mix)));
-    --ink:      color-mix(in oklch, var(--near-black) 8%,  white 92%);
-    --ink-soft: color-mix(in oklch, var(--near-black) 35%, white 65%);
-    --border:   color-mix(in oklch, var(--near-black) 60%, white 40%);
-    --accent:   var(--primary-light);
-    --accent-ink: white;
-  }
-}
-
-/* Manual dark override */
-:root[data-theme="dark"]{
-  --bg:       color-mix(in oklch, var(--near-black) var(--bg-dark-mix),      white calc(100% - var(--bg-dark-mix)));
-  --surface:  color-mix(in oklch, var(--near-black) var(--surface-dark-mix), white calc(100% - var(--surface-dark-mix)));
-  --surface-2:color-mix(in oklch, var(--near-black) var(--surface2-dark-mix),white calc(100% - var(--surface2-dark-mix)));
-  --ink:      color-mix(in oklch, var(--near-black) 8%,  white 92%);
-  --ink-soft: color-mix(in oklch, var(--near-black) 35%, white 65%);
-  --border:   color-mix(in oklch, var(--near-black) 60%, white 40%);
-  --accent:   var(--primary-light);
-  --accent-ink: white;
-}
+:root{ color-scheme: light; }
 
 /* ---------- Reset ---------- */
 *,*::before,*::after{ box-sizing:border-box; margin:0; }
@@ -432,26 +405,14 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ---------- OKLCH Fallbacks ---------- */
+/* ---------- OKLCH Fallbacks (Light Mode Only) ---------- */
 @supports not (color: oklch(50% 0.1 200)){
   :root{
     --primary:#6b9b7f; --secondary:#d8906d;
     --near-black:#1a1a1a;
-    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f2;
-    --ink:#111111; --ink-soft:#555555; --border:#e5e5e5;
+    --bg:#fefffe; --surface:#faf9f8; --surface-2:#f5f3f2;
+    --ink:#4a4640; --ink-soft:#8b8480; --border:#e8e5e2;
     --accent:var(--primary); --accent-ink:#111111;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0d0f10; --surface:#141618; --surface-2:#1b1e21;
-      --ink:#f2f5f7; --ink-soft:#c9d0d6; --border:#2b3035;
-      --accent: #8eb89f; --accent-ink:#ffffff;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#0d0f10; --surface:#141618; --surface-2:#1b1e21;
-    --ink:#f2f5f7; --ink-soft:#c9d0d6; --border:#2b3035;
-    --accent: #8eb89f; --accent-ink:#ffffff;
   }
 }
   </style>
@@ -467,9 +428,6 @@ footer a:hover {
           <a href="#testimonials">Testimonials</a>
           <a href="#about">About</a>
           <a href="tel:+15551234567" class="phone-cta">📞 (555) 123-4567</a>
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <span id="themeIcon" aria-hidden="true">💫</span>
-          </button>
         </div>
       </div>
     </div>
@@ -585,39 +543,5 @@ footer a:hover {
     </div>
   </footer>
 
-  <script>
-/* Theme toggle: Light / Dark / Auto (with live OS sync when Auto) */
-(function(){
-  const html  = document.documentElement;
-  const toggle= document.getElementById('themeToggle');
-  const icon  = document.getElementById('themeIcon');
-
-  let theme = localStorage.getItem('theme') || 'auto';
-  const themes = {
-    light: { icon: '☀️', next: 'dark' },
-    dark:  { icon: '🌙', next: 'auto' },
-    auto:  { icon: '💫', next: 'light' }
-  };
-
-  function apply(next){
-    theme = next;
-    if (theme === 'auto') html.removeAttribute('data-theme');
-    else html.setAttribute('data-theme', theme);
-    icon.textContent = themes[theme].icon;
-    toggle.setAttribute('aria-label', `Theme: ${theme}. Click to change.`);
-    localStorage.setItem('theme', theme);
-  }
-
-  toggle.addEventListener('click', () => apply(themes[theme].next));
-
-  // Keep Auto synced to OS changes
-  const mql = window.matchMedia('(prefers-color-scheme: dark)');
-  (mql.addEventListener ? mql.addEventListener : mql.addListener).call(mql, 'change', () => {
-    if ((localStorage.getItem('theme') || 'auto') === 'auto') apply('auto');
-  });
-
-  apply(theme);
-})();
-  </script>
 </body>
 </html>
