@@ -236,6 +236,31 @@ nav a:hover { color: var(--primary); }
   flex-wrap: wrap;
 }
 
+.logo {
+  font-size: var(--fluid-font-2);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo::before {
+  content: '🌿';
+  font-size: 1.5em;
+  display: inline-block;
+}
+
 .phone-cta {
   background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
   color: white;
@@ -486,7 +511,7 @@ footer a:hover {
   <nav>
     <div class="container">
       <div class="flex" style="justify-content: space-between; align-items: center;">
-        <h3 style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">Green Thumb</h3>
+        <h3 class="logo">Green Thumb</h3>
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="#reviews">Reviews</a>
