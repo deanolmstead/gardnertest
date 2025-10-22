@@ -371,11 +371,11 @@ nav a:hover { color: var(--primary); }
 .testimonial-card::before {
   content: '"';
   position: absolute;
-  top: var(--space-2);
+  top: -0.5rem;
   left: var(--space-2);
-  font-size: 4rem;
-  color: var(--primary);
-  opacity: 0.1;
+  font-size: 7rem;
+  color: var(--secondary);
+  opacity: 0.15;
   line-height: 1;
   font-weight: 700;
 }
@@ -398,16 +398,30 @@ nav a:hover { color: var(--primary); }
 }
 
 .testimonial-author {
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: var(--space-1);
-  font-size: var(--fluid-font-0);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 0;
 }
 
-.testimonial-rating {
-  color: var(--secondary);
-  font-size: 1rem;
-  letter-spacing: 0.15rem;
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: var(--fluid-font-0);
+  flex-shrink: 0;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: var(--fluid-font-0);
 }
 
 /* ---------- Footer ---------- */
@@ -533,20 +547,26 @@ footer a:hover {
         <div class="grid md:grid-3">
           <div class="testimonial-card block">
             <div class="testimonial-text">"Green Thumb completely transformed our backyard into the perfect outdoor oasis. The team was professional, attentive to detail, and delivered exactly what we envisioned."</div>
-            <div class="testimonial-author">Sarah Johnson</div>
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SJ</div>
+              <div class="testimonial-name">Sarah Johnson</div>
+            </div>
           </div>
 
           <div class="testimonial-card block">
             <div class="testimonial-text">"Outstanding service! Their landscape design expertise and attention to detail made all the difference. Our garden is now the envy of the neighborhood."</div>
-            <div class="testimonial-author">Michael Chen</div>
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MC</div>
+              <div class="testimonial-name">Michael Chen</div>
+            </div>
           </div>
 
           <div class="testimonial-card block">
             <div class="testimonial-text">"I've been using Green Thumb for maintenance for 3 years. Reliable, professional, and they truly care about keeping my garden beautiful. Highly recommended!"</div>
-            <div class="testimonial-author">Jennifer Williams</div>
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JW</div>
+              <div class="testimonial-name">Jennifer Williams</div>
+            </div>
           </div>
         </div>
       </div>
