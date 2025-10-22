@@ -1,12 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gardner Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green Thumb Gardens - Professional Landscaping & Garden Services</title>
+  <style>
+/* =====================================================
+   CSS STARTER v7 — Dual Color System (OKLCH)
+   - Manual/Auto dark mode without rewrites
+   - Neutral-driven dark surfaces (brand-safe)
+   - color-scheme hints, motion/accessibility guards
+   - Live Auto syncing + OKLCH fallbacks
+   ===================================================== */
+
+/* ---------- Design Tokens ---------- */
+:root{
+  /* Theme seeds - Muted Green & Orange */
+  --base-1: #6b9b7f;      /* Muted green - primary */
+  --base-2: #d8906d;      /* Warm orange - secondary */
+
+  /* Base 1 relatives */
+  --base-1-lighter:   oklch(from var(--base-1) clamp(0, l + 0.22, 1) calc(c * 0.90) h);
+  --base-1-light:     oklch(from var(--base-1) clamp(0, l + 0.11, 1) calc(c * 0.95) h);
+  --base-1-dark:      oklch(from var(--base-1) clamp(0, l - 0.11, 1) calc(c * 0.96) h);
+  --base-1-darker:    oklch(from var(--base-1) clamp(0, l - 0.22, 1) calc(c * 0.92) h);
+
+  /* Base 2 relatives */
+  --base-2-lighter:   oklch(from var(--base-2) clamp(0, l + 0.22, 1) calc(c * 0.90) h);
+  --base-2-light:     oklch(from var(--base-2) clamp(0, l + 0.11, 1) calc(c * 0.95) h);
+  --base-2-dark:      oklch(from var(--base-2) clamp(0, l - 0.11, 1) calc(c * 0.96) h);
+  --base-2-darker:    oklch(from var(--base-2) clamp(0, l - 0.22, 1) calc(c * 0.92) h);
+
+  /* Semantic color mappings */
+  --primary: var(--base-1);
+  --primary-light: var(--base-1-lighter);
+  --primary-dark: var(--base-1-dark);
+  --secondary: var(--base-2);
+  --secondary-light: var(--base-2-lighter);
+  --secondary-dark: var(--base-2-dark);
+
+  /* Neutral pivot + near-black (brand-neutral for dark mode) */
+  --neutral: oklch(20% 0 0);
+  --near-black: color-mix(in oklch, var(--neutral) 40%, black 60%);
+
+  /* Fluid type scale */
+  --fluid-font--2: clamp(0.6944rem, 0.8175rem + -0.1367vw, 0.7901rem);
+  --fluid-font--1: clamp(0.8333rem, 0.9048rem + -0.0794vw, 0.8889rem);
+  --fluid-font-0: clamp(1rem, 1rem + 0vw, 1rem);
+  --fluid-font-1: clamp(1.125rem, 1.1036rem + 0.1071vw, 1.2rem);
+  --fluid-font-2: clamp(1.2656rem, 1.2158rem + 0.2491vw, 1.44rem);
+  --fluid-font-3: clamp(1.4238rem, 1.3369rem + 0.4345vw, 1.728rem);
+  --fluid-font-4: clamp(1.6018rem, 1.467rem + 0.674vw, 2.0736rem);
+  --fluid-font-5: clamp(1.802rem, 1.606rem + 0.9804vw, 2.4883rem);
+
+  /* Spacing */
+  --space-1: clamp(.4rem, .8vw, .6rem);
+  --space-2: clamp(.8rem, 1.6vw, 1.2rem);
+  --space-3: clamp(1.2rem, 2.4vw, 1.8rem);
+  --space-4: clamp(1.6rem, 3.2vw, 2.4rem);
+  --space-5: clamp(2rem, 4vw, 3rem);
+
+  /* Light mode tokens */
+  --bg:       color-mix(in oklch, var(--near-black) 6%,  white 94%);
+  --surface:  color-mix(in oklch, var(--near-black) 12%, white 88%);
+  --surface-2:color-mix(in oklch, var(--near-black) 20%, white 80%);
+  --ink:      color-mix(in oklch, var(--near-black) 85%, white 15%);
+  --ink-soft: color-mix(in oklch, var(--near-black) 55%, white 45%);
+  --border:   color-mix(in oklch, var(--near-black) 15%, white 85%);
+  --accent:   var(--primary);
+  --accent-ink: color-mix(in oklch, black 85%, white 15%);
+
+  /* Theme tuning knobs for dark mode */
+  --bg-dark-mix: 92%;
+  --surface-dark-mix: 80%;
+  --surface2-dark-mix: 70%;
+
+  /* Motion + easing */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --t-fast: 160ms;
+
+  /* Hint UA to theme form controls/scrollbars */
+  color-scheme: light dark;
+}
+:root[data-theme="light"]{ color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark;  }
+
+/* Auto dark mode (no JS required when theme=auto) */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:       color-mix(in oklch, var(--near-black) var(--bg-dark-mix),      white calc(100% - var(--bg-dark-mix)));
+    --surface:  color-mix(in oklch, var(--near-black) var(--surface-dark-mix), white calc(100% - var(--surface-dark-mix)));
+    --surface-2:color-mix(in oklch, var(--near-black) var(--surface2-dark-mix),white calc(100% - var(--surface2-dark-mix)));
+    --ink:      color-mix(in oklch, var(--near-black) 8%,  white 92%);
+    --ink-soft: color-mix(in oklch, var(--near-black) 35%, white 65%);
+    --border:   color-mix(in oklch, var(--near-black) 60%, white 40%);
+    --accent:   var(--primary-light);
+    --accent-ink: white;
+  }
+}
+
+/* Manual dark override */
+:root[data-theme="dark"]{
+  --bg:       color-mix(in oklch, var(--near-black) var(--bg-dark-mix),      white calc(100% - var(--bg-dark-mix)));
+  --surface:  color-mix(in oklch, var(--near-black) var(--surface-dark-mix), white calc(100% - var(--surface-dark-mix)));
+  --surface-2:color-mix(in oklch, var(--near-black) var(--surface2-dark-mix),white calc(100% - var(--surface2-dark-mix)));
+  --ink:      color-mix(in oklch, var(--near-black) 8%,  white 92%);
+  --ink-soft: color-mix(in oklch, var(--near-black) 35%, white 65%);
+  --border:   color-mix(in oklch, var(--near-black) 60%, white 40%);
+  --accent:   var(--primary-light);
+  --accent-ink: white;
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{ box-sizing:border-box; margin:0; }
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+img{ display:block; max-inline-size:100%; }
+svg{ display:block; max-width:100%; height:auto; }
+button,input,select,textarea{ font:inherit; color:inherit; }
+
+/* ---------- Typography ---------- */
+h1,h2,h3,h4,h5,h6{ line-height:1.2; font-weight:700; }
+h1{ font-size:var(--fluid-font-5); }
+h2{ font-size:var(--fluid-font-4); }
+h3{ font-size:var(--fluid-font-3); }
+h4{ font-size:var(--fluid-font-2); }
+h5{ font-size:var(--fluid-font-1); }
+h6{ font-size:var(--fluid-font-0); }
+p { font-size:var(--fluid-font-0); }
+small{ font-size:var(--fluid-font--1); }
+
+/* ---------- Utilities ---------- */
+.container{ width:min(100% - 2rem, 70rem); margin-inline:auto; }
+.flex{ display:flex; gap:var(--space-2); }
+.grid{ display:grid; gap:var(--space-2); }
+.card{
+  background:var(--surface);
+  border-radius:.5rem;
+  padding:var(--space-3);
+  container-type:inline-size;
+  container-name:card;
+  transition: all var(--t-fast) var(--ease);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.15);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Container query example for cards */
+@container card (min-width: 400px){
+  .card-content{ display:flex; gap:var(--space-2); align-items:center; }
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6em 1.5em; border:none; border-radius:.4rem;
+  font-weight:600; cursor:pointer; text-decoration:none;
+  transition: all var(--t-fast) var(--ease);
+}
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.btn-primary{
+  background:var(--primary);
+  color:white;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.15);
+}
+.btn-primary:hover{
+  background:var(--primary-dark);
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.2);
+}
+.btn-secondary{
+  background:var(--secondary);
+  color:white;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.15);
+}
+.btn-secondary:hover{
+  background:var(--secondary-dark);
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.2);
+}
+.btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--border); }
+.btn-ghost:hover{ background:var(--surface); }
+
+/* Focus states for links */
+a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:.2rem; }
+
+/* ---------- Scroll Animations ---------- */
+@keyframes appear{ from{ opacity:0; scale:.5; } to{ opacity:1; scale:1; } }
+.block{ animation: appear linear forwards; animation-timeline:view(); animation-range: entry 0% cover 40%; }
+
+/* Motion + feature fallbacks */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+@supports not (animation-timeline: view()){
+  .block{ opacity:1; transform:none; }
+}
+
+/* ---------- Media Queries ---------- */
+@media (width >= 40em){ .sm\:grid-2{ grid-template-columns:repeat(2,1fr); } }
+@media (width >= 48em){ .md\:grid-3{ grid-template-columns:repeat(3,1fr); } .md\:flex{ display:flex; } }
+@media (width >= 64em){ .lg\:grid-4{ grid-template-columns:repeat(4,1fr); } }
+
+/* ---------- Nav ---------- */
+nav{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:var(--space-3) 0;
+  transition: all var(--t-fast) var(--ease);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav .flex{ align-items:center; justify-content:space-between; }
+nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
+nav a:hover { color: var(--primary); }
+
+.nav-links {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.phone-cta {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: white;
+  padding: .6em 1.5em;
+  border-radius: .4rem;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.15);
+  transition: all var(--t-fast) var(--ease);
+}
+.phone-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.2);
+}
+
+.theme-toggle{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  padding:.5em 1em;
+  border-radius:.4rem;
+  cursor:pointer;
+  font-size:var(--fluid-font--1);
+  transition: all var(--t-fast) var(--ease);
+}
+.theme-toggle:hover{ background:var(--accent); color:white; border-color:var(--accent); transform:translateY(-1px); }
+
+/* ---------- Hero Section ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: var(--space-5) 0;
+  text-align: center;
+}
+
+.hero h1 {
+  color: white;
+  margin-bottom: var(--space-2);
+  font-size: var(--fluid-font-5);
+}
+
+.hero p {
+  color: rgba(255,255,255,0.9);
+  margin-bottom: var(--space-4);
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--fluid-font-1);
+}
+
+.hero .btn-secondary {
+  font-size: var(--fluid-font-1);
+  padding: .8em 2em;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* ---------- Services Section ---------- */
+.services {
+  padding: var(--space-5) 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.section-title h2 {
+  margin-bottom: var(--space-2);
+  color: var(--primary);
+}
+
+.section-title p {
+  color: var(--ink-soft);
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-card {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: .5rem;
+  text-align: center;
+  transition: all var(--t-fast) var(--ease);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.1);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 8px 16px rgba(0,0,0,0.15);
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-2);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+}
+
+.service-card p {
+  color: var(--ink-soft);
+  margin-bottom: var(--space-3);
+}
+
+.service-card .btn-primary {
+  width: 100%;
+}
+
+/* ---------- Testimonials Section ---------- */
+.testimonials {
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  padding: var(--space-5) 0;
+}
+
+.testimonial-card {
+  background: var(--bg);
+  padding: var(--space-4);
+  border-radius: .5rem;
+  border-left: 4px solid var(--secondary);
+  transition: all var(--t-fast) var(--ease);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 2px 4px rgba(0,0,0,0.1);
+}
+
+.testimonial-card:hover {
+  transform: translateX(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 4px 8px rgba(0,0,0,0.15);
+}
+
+.testimonial-text {
+  color: var(--ink-soft);
+  margin-bottom: var(--space-3);
+  font-size: var(--fluid-font--1);
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--space-1);
+}
+
+.testimonial-rating {
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: var(--space-4) 0;
+  margin-top: var(--space-5);
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- OKLCH Fallbacks ---------- */
+@supports not (color: oklch(50% 0.1 200)){
+  :root{
+    --primary:#6b9b7f; --secondary:#d8906d;
+    --near-black:#1a1a1a;
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f2;
+    --ink:#111111; --ink-soft:#555555; --border:#e5e5e5;
+    --accent:var(--primary); --accent-ink:#111111;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d0f10; --surface:#141618; --surface-2:#1b1e21;
+      --ink:#f2f5f7; --ink-soft:#c9d0d6; --border:#2b3035;
+      --accent: #8eb89f; --accent-ink:#ffffff;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d0f10; --surface:#141618; --surface-2:#1b1e21;
+    --ink:#f2f5f7; --ink-soft:#c9d0d6; --border:#2b3035;
+    --accent: #8eb89f; --accent-ink:#ffffff;
+  }
+}
+  </style>
 </head>
 <body>
-    <h1>Gardner Test</h1>
-    <p>Welcome to the Gardner Test page.</p>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="flex" style="justify-content: space-between; align-items: center;">
+        <h3 style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">Green Thumb</h3>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#about">About</a>
+          <a href="tel:+15551234567" class="phone-cta">📞 (555) 123-4567</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon" aria-hidden="true">💫</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Transform Your Outdoor Space</h1>
+      <p>Professional landscaping and garden services for your dream outdoor living area. Expert care, beautiful results.</p>
+      <a href="tel:+15551234567" class="btn btn-secondary" style="font-size: var(--fluid-font-1); padding: .8em 2em;">📞 Call Now: (555) 123-4567</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <main class="container" style="margin-top:var(--space-5)">
+    <section id="services" class="services">
+      <div class="section-title">
+        <h2>Our Services</h2>
+        <p>From design to maintenance, we handle all your gardening and landscaping needs with expertise and care.</p>
+      </div>
+
+      <div class="grid md:grid-3">
+        <div class="service-card block">
+          <div class="service-icon">🌿</div>
+          <h3>Garden Design</h3>
+          <p>Custom garden designs tailored to your vision and landscape. We create beautiful, sustainable outdoor spaces.</p>
+          <a href="tel:+15551234567" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="service-card block">
+          <div class="service-icon">🌱</div>
+          <h3>Landscape Maintenance</h3>
+          <p>Regular maintenance programs keeping your gardens and lawns healthy and vibrant year-round.</p>
+          <a href="tel:+15551234567" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="service-card block">
+          <div class="service-icon">🌳</div>
+          <h3>Tree & Shrub Care</h3>
+          <p>Professional pruning, trimming, and care for trees and shrubs to enhance your property's beauty.</p>
+          <a href="tel:+15551234567" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+
+      <div class="grid md:grid-3" style="margin-top: var(--space-4);">
+        <div class="service-card block">
+          <div class="service-icon">🏡</div>
+          <h3>Hardscaping</h3>
+          <p>Patios, walkways, and outdoor structures that blend seamlessly with your landscape design.</p>
+          <a href="tel:+15551234567" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="service-card block">
+          <div class="service-icon">💧</div>
+          <h3>Irrigation Systems</h3>
+          <p>Smart irrigation solutions for efficient watering and healthier plants with less maintenance.</p>
+          <a href="tel:+15551234567" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="service-card block">
+          <div class="service-icon">🌸</div>
+          <h3>Seasonal Plantings</h3>
+          <p>Beautiful seasonal flowers and plantings to keep your garden colorful throughout the year.</p>
+          <a href="tel:+15551234567" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Our Clients Say</h2>
+          <p>Join hundreds of satisfied customers who have transformed their outdoor spaces.</p>
+        </div>
+
+        <div class="grid md:grid-3">
+          <div class="testimonial-card block">
+            <div class="testimonial-text">"Green Thumb completely transformed our backyard into the perfect outdoor oasis. The team was professional, attentive to detail, and delivered exactly what we envisioned."</div>
+            <div class="testimonial-author">Sarah Johnson</div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+
+          <div class="testimonial-card block">
+            <div class="testimonial-text">"Outstanding service! Their landscape design expertise and attention to detail made all the difference. Our garden is now the envy of the neighborhood."</div>
+            <div class="testimonial-author">Michael Chen</div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+
+          <div class="testimonial-card block">
+            <div class="testimonial-text">"I've been using Green Thumb for maintenance for 3 years. Reliable, professional, and they truly care about keeping my garden beautiful. Highly recommended!"</div>
+            <div class="testimonial-author">Jennifer Williams</div>
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="text-align: center; margin: var(--space-5) 0; padding: var(--space-5) 0;">
+      <h2 style="margin-bottom: var(--space-3);">Ready to Start Your Garden Transformation?</h2>
+      <p style="color: var(--ink-soft); margin-bottom: var(--space-4); font-size: var(--fluid-font-1);">Contact us today for a free consultation</p>
+      <a href="tel:+15551234567" class="btn btn-secondary" style="font-size: var(--fluid-font-1); padding: .8em 2em; box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 6px 12px rgba(0,0,0,0.15);">📞 Call (555) 123-4567</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: var(--space-2);">Green Thumb Gardens © 2025. All rights reserved.</p>
+      <p><a href="tel:+15551234567">(555) 123-4567</a> • <a href="mailto:info@greenthumb.local">info@greenthumb.local</a></p>
+    </div>
+  </footer>
+
+  <script>
+/* Theme toggle: Light / Dark / Auto (with live OS sync when Auto) */
+(function(){
+  const html  = document.documentElement;
+  const toggle= document.getElementById('themeToggle');
+  const icon  = document.getElementById('themeIcon');
+
+  let theme = localStorage.getItem('theme') || 'auto';
+  const themes = {
+    light: { icon: '☀️', next: 'dark' },
+    dark:  { icon: '🌙', next: 'auto' },
+    auto:  { icon: '💫', next: 'light' }
+  };
+
+  function apply(next){
+    theme = next;
+    if (theme === 'auto') html.removeAttribute('data-theme');
+    else html.setAttribute('data-theme', theme);
+    icon.textContent = themes[theme].icon;
+    toggle.setAttribute('aria-label', `Theme: ${theme}. Click to change.`);
+    localStorage.setItem('theme', theme);
+  }
+
+  toggle.addEventListener('click', () => apply(themes[theme].next));
+
+  // Keep Auto synced to OS changes
+  const mql = window.matchMedia('(prefers-color-scheme: dark)');
+  (mql.addEventListener ? mql.addEventListener : mql.addListener).call(mql, 'change', () => {
+    if ((localStorage.getItem('theme') || 'auto') === 'auto') apply('auto');
+  });
+
+  apply(theme);
+})();
+  </script>
 </body>
 </html>
