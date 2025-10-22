@@ -227,7 +227,15 @@ nav:has(~ :not(.hero)) {
 }
 nav .flex{ align-items:center; justify-content:space-between; }
 nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
-nav a:hover { color: var(--primary); }
+
+.nav-links a {
+  color: var(--primary);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--secondary-dark);
+}
 
 .nav-links {
   display: flex;
