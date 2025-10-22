@@ -276,25 +276,31 @@ nav a:hover { color: var(--primary); }
 
 /* ---------- Hero Section ---------- */
 .hero {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background: linear-gradient(135deg, rgba(107, 155, 127, 0.7), rgba(107, 155, 127, 0.7)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=600&fit=crop') center/cover no-repeat;
   color: white;
   padding: var(--space-5) 0;
   text-align: center;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero h1 {
   color: white;
   margin-bottom: var(--space-2);
   font-size: var(--fluid-font-5);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
   margin-bottom: var(--space-4);
   max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
   font-size: var(--fluid-font-1);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero .btn-secondary {
