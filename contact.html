@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - Green Thumb Gardens</title>
+  <style>
+/* =====================================================
+   CSS STARTER v7 — Dual Color System (OKLCH)
+   ===================================================== */
+
+/* ---------- Design Tokens ---------- */
+:root{
+  /* Theme seeds - Muted Green & Orange */
+  --base-1: #6b9b7f;      /* Muted green - primary */
+  --base-2: #d8906d;      /* Warm orange - secondary */
+
+  /* Base 1 relatives */
+  --base-1-lighter:   oklch(from var(--base-1) clamp(0, l + 0.22, 1) calc(c * 0.90) h);
+  --base-1-light:     oklch(from var(--base-1) clamp(0, l + 0.11, 1) calc(c * 0.95) h);
+  --base-1-dark:      oklch(from var(--base-1) clamp(0, l - 0.11, 1) calc(c * 0.96) h);
+  --base-1-darker:    oklch(from var(--base-1) clamp(0, l - 0.22, 1) calc(c * 0.92) h);
+
+  /* Base 2 relatives */
+  --base-2-lighter:   oklch(from var(--base-2) clamp(0, l + 0.22, 1) calc(c * 0.90) h);
+  --base-2-light:     oklch(from var(--base-2) clamp(0, l + 0.11, 1) calc(c * 0.95) h);
+  --base-2-dark:      oklch(from var(--base-2) clamp(0, l - 0.11, 1) calc(c * 0.96) h);
+  --base-2-darker:    oklch(from var(--base-2) clamp(0, l - 0.22, 1) calc(c * 0.92) h);
+
+  /* Semantic color mappings */
+  --primary: var(--base-1);
+  --primary-light: var(--base-1-lighter);
+  --primary-dark: var(--base-1-dark);
+  --secondary: var(--base-2);
+  --secondary-light: var(--base-2-lighter);
+  --secondary-dark: var(--base-2-dark);
+
+  /* Neutral pivot + near-black */
+  --neutral: oklch(20% 0 0);
+  --near-black: color-mix(in oklch, var(--neutral) 40%, black 60%);
+
+  /* Fluid type scale */
+  --fluid-font--2: clamp(0.6944rem, 0.8175rem + -0.1367vw, 0.7901rem);
+  --fluid-font--1: clamp(0.8333rem, 0.9048rem + -0.0794vw, 0.8889rem);
+  --fluid-font-0: clamp(1rem, 1rem + 0vw, 1rem);
+  --fluid-font-1: clamp(1.125rem, 1.1036rem + 0.1071vw, 1.2rem);
+  --fluid-font-2: clamp(1.2656rem, 1.2158rem + 0.2491vw, 1.44rem);
+  --fluid-font-3: clamp(1.4238rem, 1.3369rem + 0.4345vw, 1.728rem);
+  --fluid-font-4: clamp(1.6018rem, 1.467rem + 0.674vw, 2.0736rem);
+  --fluid-font-5: clamp(1.802rem, 1.606rem + 0.9804vw, 2.4883rem);
+
+  /* Spacing */
+  --space-1: clamp(.4rem, .8vw, .6rem);
+  --space-2: clamp(.8rem, 1.6vw, 1.2rem);
+  --space-3: clamp(1.2rem, 2.4vw, 1.8rem);
+  --space-4: clamp(1.6rem, 3.2vw, 2.4rem);
+  --space-5: clamp(2rem, 4vw, 3rem);
+
+  /* Light mode tokens - subtle colors */
+  --bg:       color-mix(in oklch, var(--near-black) 2%,  white 98%);
+  --surface:  color-mix(in oklch, var(--near-black) 5%, white 95%);
+  --surface-2:color-mix(in oklch, var(--near-black) 10%, white 90%);
+  --ink:      color-mix(in oklch, var(--near-black) 75%, white 25%);
+  --ink-soft: color-mix(in oklch, var(--near-black) 45%, white 55%);
+  --border:   color-mix(in oklch, var(--near-black) 8%, white 92%);
+  --accent:   var(--primary);
+  --accent-ink: color-mix(in oklch, black 85%, white 15%);
+
+  /* Motion + easing */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --t-fast: 160ms;
+
+  color-scheme: light;
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{ box-sizing:border-box; margin:0; }
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+img{ display:block; max-inline-size:100%; }
+button,input,select,textarea{ font:inherit; color:inherit; }
+
+/* ---------- Typography ---------- */
+h1,h2,h3,h4,h5,h6{ line-height:1.2; font-weight:700; }
+h1{ font-size:var(--fluid-font-5); }
+h2{ font-size:var(--fluid-font-4); }
+h3{ font-size:var(--fluid-font-3); }
+h4{ font-size:var(--fluid-font-2); }
+h5{ font-size:var(--fluid-font-1); }
+h6{ font-size:var(--fluid-font-0); }
+p { font-size:var(--fluid-font-0); }
+
+/* ---------- Utilities ---------- */
+.container{ width:min(100% - 2rem, 70rem); margin-inline:auto; }
+.flex{ display:flex; gap:var(--space-2); }
+.grid{ display:grid; gap:var(--space-2); }
+
+/* ---------- Nav ---------- */
+nav{
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-1) 0;
+  transition: all var(--t-fast) var(--ease);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(0px);
+}
+
+nav:has(~ :not(.hero)) {
+  background: rgba(250, 249, 248, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(232, 229, 226, 0.5);
+}
+nav .flex{ align-items:center; justify-content:space-between; }
+nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
+
+.nav-links {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--primary);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--secondary-dark);
+}
+
+.logo {
+  font-size: var(--fluid-font-2);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo::before {
+  content: '🌿';
+  font-size: 1.5em;
+  display: inline-block;
+}
+
+.phone-cta {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: white !important;
+  padding: .6em 1.5em;
+  border-radius: .4rem;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.15);
+  transition: all var(--t-fast) var(--ease);
+}
+
+.phone-cta:hover {
+  color: white !important;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.2);
+}
+
+.phone-cta:hover .phone-icon {
+  animation: phoneShake 0.4s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* ---------- Phone Shake Animation ---------- */
+@keyframes phoneShake{
+  0%, 100% { transform: translateX(0) translateY(-2px); }
+  25% { transform: translateX(-3px) translateY(-2px); }
+  50% { transform: translateX(3px) translateY(-2px); }
+  75% { transform: translateX(-3px) translateY(-2px); }
+}
+
+/* ---------- Form Styles ---------- */
+.contact-section {
+  padding: var(--space-5) 0;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--ink);
+  font-size: var(--fluid-font-0);
+}
+
+input,
+textarea,
+select {
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: .4rem;
+  background: var(--surface);
+  color: var(--ink);
+  transition: all var(--t-fast) var(--ease);
+  font-size: var(--fluid-font-0);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 0 0 3px rgba(107, 155, 127, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: .8em 2em;
+  border: none;
+  border-radius: .4rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: var(--fluid-font-0);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 3px 6px rgba(0,0,0,0.15);
+  transition: all var(--t-fast) var(--ease);
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-darker));
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.2),
+    0 6px 12px rgba(0,0,0,0.2);
+}
+
+.btn-submit:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.section-title h2 {
+  margin-bottom: var(--space-2);
+  color: var(--primary);
+}
+
+.section-title p {
+  color: var(--ink-soft);
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.info-item {
+  text-align: center;
+}
+
+.info-item h3 {
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+  font-size: var(--fluid-font-1);
+}
+
+.info-item p {
+  color: var(--ink-soft);
+  font-size: var(--fluid-font-0);
+}
+
+.info-item a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info-item a:hover {
+  color: var(--secondary-dark);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: var(--space-4) 0;
+  margin-top: var(--space-5);
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- OKLCH Fallbacks ---------- */
+@supports not (color: oklch(50% 0.1 200)){
+  :root{
+    --primary:#6b9b7f; --secondary:#d8906d;
+    --near-black:#1a1a1a;
+    --bg:#fefffe; --surface:#faf9f8; --surface-2:#f5f3f2;
+    --ink:#4a4640; --ink-soft:#8b8480; --border:#e8e5e2;
+    --accent:var(--primary); --accent-ink:#111111;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="flex" style="justify-content: space-between; align-items: center;">
+        <h3 class="logo">Green Thumb</h3>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html" style="color: var(--secondary-dark);">Contact</a>
+          <a href="tel:+15551234567" class="phone-cta"><span class="phone-icon">📞</span> (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <main class="container">
+    <section class="contact-section">
+      <div class="section-title">
+        <h2>Get In Touch</h2>
+        <p>Have questions about our services? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <form id="contactForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Interest</label>
+            <select id="service" name="service">
+              <option value="">Select a service...</option>
+              <option value="garden-design">Garden Design</option>
+              <option value="maintenance">Landscape Maintenance</option>
+              <option value="tree-shrub">Tree & Shrub Care</option>
+              <option value="hardscaping">Hardscaping</option>
+              <option value="irrigation">Irrigation Systems</option>
+              <option value="seasonal">Seasonal Plantings</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <div class="info-item">
+          <h3>📞 Call Us</h3>
+          <p><a href="tel:+15551234567">(555) 123-4567</a></p>
+        </div>
+        <div class="info-item">
+          <h3>📧 Email</h3>
+          <p><a href="mailto:info@greenthumb.local">info@greenthumb.local</a></p>
+        </div>
+        <div class="info-item">
+          <h3>⏰ Hours</h3>
+          <p>Mon - Fri: 8am - 5pm<br>Sat: 9am - 3pm<br>Sun: Closed</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: var(--space-2);">Green Thumb Gardens © 2025. All rights reserved.</p>
+      <p><a href="tel:+15551234567">(555) 123-4567</a> • <a href="mailto:info@greenthumb.local">info@greenthumb.local</a></p>
+    </div>
+  </footer>
+</body>
+</html>
