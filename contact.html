@@ -389,7 +389,9 @@ footer a:hover {
       </div>
 
       <div class="contact-wrapper">
-        <form id="contactForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+        <div id="formMessage" style="display: none; margin-bottom: var(--space-3); padding: var(--space-3); border-radius: .4rem; text-align: center; font-weight: 600;"></div>
+
+        <form id="contactForm">
           <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" required placeholder="John Doe">
@@ -424,7 +426,7 @@ footer a:hover {
             <textarea id="message" name="message" required placeholder="Tell us about your project..."></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">Send Message</button>
+          <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
         </form>
       </div>
 
@@ -453,5 +455,68 @@ footer a:hover {
       <p><a href="tel:+15551234567">(555) 123-4567</a> • <a href="mailto:info@greenthumb.local">info@greenthumb.local</a></p>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formMessage = document.getElementById('formMessage');
+      const submitBtn = document.getElementById('submitBtn');
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formMessage.style.display = 'none';
+
+      // Collect form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value
+      };
+
+      try {
+        // Replace with your Lambda endpoint
+        const response = await fetch('YOUR_LAMBDA_ENDPOINT_URL', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Success message
+          formMessage.style.display = 'block';
+          formMessage.style.backgroundColor = '#d4edda';
+          formMessage.style.color = '#155724';
+          formMessage.textContent = '✓ Message sent successfully! We\'ll be in touch soon.';
+
+          // Reset form
+          document.getElementById('contactForm').reset();
+
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        } else {
+          throw new Error(result.error || 'Failed to send message');
+        }
+      } catch (error) {
+        // Error message
+        formMessage.style.display = 'block';
+        formMessage.style.backgroundColor = '#f8d7da';
+        formMessage.style.color = '#721c24';
+        formMessage.textContent = '✗ Error: ' + error.message;
+
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+  </script>
 </body>
 </html>
