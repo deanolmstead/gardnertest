@@ -478,8 +478,7 @@ footer a:hover {
       };
 
       try {
-        // Replace with your Lambda endpoint
-        const response = await fetch('YOUR_LAMBDA_ENDPOINT_URL', {
+        const response = await fetch('https://y1uu65hjd3.execute-api.us-east-1.amazonaws.com/default/contact-form-handler', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
